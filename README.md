@@ -1,5 +1,6 @@
 # Lead to owner
 [![Tests](https://github.com/Maliha-Tasnim/lead-to-owner/actions/workflows/test.yml/badge.svg)](https://github.com/Maliha-Tasnim/lead-to-owner/actions/workflows/test.yml)
+
 Inbound lead routing for HubSpot, built in n8n. Every new form lead gets an owner (or the right queue) within minutes, with the reason written on the record: duplicates checked, the message read by an AI model, missing fields filled by Clay, a fit and engagement score, nine ordered rules, and a Slack message to the new owner.
 
 ![How a lead moves between HubSpot, n8n, Claude, Clay and Slack](docs/media/data-flow.svg)
