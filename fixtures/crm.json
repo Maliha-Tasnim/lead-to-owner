@@ -1,0 +1,39 @@
+{
+  "_note": "Made-up CRM data for tests and the replay. No real people, companies or IDs.",
+  "owners": [
+    { "id": "31001", "firstName": "Aino", "lastName": "Virta", "email": "aino.virta@example.com", "archived": false },
+    { "id": "31002", "firstName": "Elias", "lastName": "Koivu", "email": "elias.koivu@example.com", "archived": false },
+    { "id": "31003", "firstName": "Lena", "lastName": "Brandt", "email": "lena.brandt@example.com", "archived": false },
+    { "id": "31004", "firstName": "Jonas", "lastName": "Albers", "email": "jonas.albers@example.com", "archived": false },
+    { "id": "31005", "firstName": "Hannah", "lastName": "Croft", "email": "hannah.croft@example.com", "archived": false },
+    { "id": "31006", "firstName": "Oliver", "lastName": "Hale", "email": "oliver.hale@example.com", "archived": false },
+    { "id": "31007", "firstName": "Sofia", "lastName": "Ricci", "email": "sofia.ricci@example.com", "archived": false },
+    { "id": "31008", "firstName": "Lucas", "lastName": "Moreau", "email": "lucas.moreau@example.com", "archived": false },
+    { "id": "31009", "firstName": "Mira", "lastName": "Lund", "email": "mira.lund@example.com", "archived": false },
+    { "id": "31010", "firstName": "Ville", "lastName": "Ranta", "email": "ville.ranta@example.com", "archived": false },
+    { "id": "31011", "firstName": "Katrin", "lastName": "Vogel", "email": "katrin.vogel@example.com", "archived": false },
+    { "id": "31012", "firstName": "James", "lastName": "Whitlow", "email": "james.whitlow@example.com", "archived": false },
+    { "id": "31013", "firstName": "Claire", "lastName": "Fontaine", "email": "claire.fontaine@example.com", "archived": false },
+    { "id": "31014", "firstName": "Mikael", "lastName": "Sand", "email": "mikael.sand@example.com", "archived": true },
+    { "id": "31015", "firstName": "Pieter", "lastName": "Dekker", "email": "pieter.dekker@example.com", "archived": false }
+  ],
+  "companies": [
+    { "id": "9001", "properties": { "name": "Kestrel Metering Oy", "domain": "kestrelmetering.com", "lifecyclestage": "customer", "hubspot_owner_id": "31002", "country": "Finland", "industry": "UTILITIES", "numberofemployees": "450" } },
+    { "id": "9002", "properties": { "name": "Harbor Fiber AB", "domain": "harborfiber.se", "lifecyclestage": "lead", "hubspot_owner_id": "31014", "country": "Sweden", "industry": "TELECOMMUNICATIONS", "numberofemployees": "120" } },
+    { "id": "9003", "properties": { "name": "Alpenwerk Energie GmbH", "domain": "alpenwerk-energie.de", "lifecyclestage": "opportunity", "hubspot_owner_id": "31004", "country": "Germany", "industry": "OIL_ENERGY", "numberofemployees": "2300" } },
+    { "id": "9004", "properties": { "name": "Brightline Utilities Ltd", "domain": "brightline-utilities.co.uk", "lifecyclestage": "lead", "hubspot_owner_id": "31015", "country": "United Kingdom", "industry": "UTILITIES", "numberofemployees": "5200" } },
+    { "id": "9005", "properties": { "name": "Nordvolt Data Centers Oy", "domain": "nordvolt.fi", "lifecyclestage": "lead", "hubspot_owner_id": "31001", "country": "Finland", "industry": "", "numberofemployees": "85" } },
+    { "id": "9006", "properties": { "name": "Lumen Grid Solutions Ltd", "domain": "lumengrid.co.uk", "lifecyclestage": "lead", "hubspot_owner_id": "", "country": "United Kingdom", "industry": "UTILITIES", "numberofemployees": "60" } }
+  ],
+  "deals": [
+    { "id": "5001", "properties": { "dealname": "Alpenwerk substation monitoring", "hubspot_owner_id": "31003", "hs_is_closed": "false", "hs_lastmodifieddate": "2026-10-28T09:00:00.000Z" }, "associations": { "company": ["9003"] }, "updatedAt": "2026-10-28T09:00:00.000Z" },
+    { "id": "5002", "properties": { "dealname": "Alpenwerk pilot", "hubspot_owner_id": "31004", "hs_is_closed": "true", "hs_lastmodifieddate": "2026-11-01T09:00:00.000Z" }, "associations": { "company": ["9003"] }, "updatedAt": "2026-11-01T09:00:00.000Z" }
+  ],
+  "contacts": [
+    { "id": "7001", "properties": { "email": "ingrid.berg@fjordnett.no", "lr_email_key": "ingrid.berg@fjordnett.no", "firstname": "Ingrid", "lastname": "Berg", "hubspot_owner_id": "31002", "createdate": "2026-03-14T10:00:00.000Z" } },
+    { "id": "7101", "properties": { "email": "earlier.lead1@example.org", "createdate": "2026-11-04T07:58:00.000Z", "lr_routing_rule": "region_round_robin", "lr_routed_owner_id": "31002", "lr_routed_at": "2026-11-04T08:00:00.000Z", "hubspot_owner_id": "31002" } },
+    { "id": "7102", "properties": { "email": "earlier.lead2@example.org", "createdate": "2026-11-04T09:28:00.000Z", "lr_routing_rule": "region_round_robin", "lr_routed_owner_id": "31001", "lr_routed_at": "2026-11-04T09:30:00.000Z", "hubspot_owner_id": "31001" } },
+    { "id": "7103", "properties": { "email": "earlier.lead3@example.org", "createdate": "2026-11-03T11:58:00.000Z", "lr_routing_rule": "region_round_robin", "lr_routed_owner_id": "31007", "lr_routed_at": "2026-11-03T12:00:00.000Z", "hubspot_owner_id": "31007" } },
+    { "id": "7104", "properties": { "email": "earlier.lead4@example.org", "createdate": "2026-11-04T13:58:00.000Z", "lr_routing_rule": "region_round_robin", "lr_routed_owner_id": "31008", "lr_routed_at": "2026-11-04T14:00:00.000Z", "hubspot_owner_id": "31008" } }
+  ]
+}

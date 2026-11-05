@@ -1,0 +1,219 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1280 720" width="1280" height="720" role="img" aria-labelledby="t d">
+  <title id="t">How a lead moves between HubSpot, n8n, Claude, Clay and Slack</title>
+  <desc id="d">Animated replay of made-up lead L07 through the lead-to-owner workflow, in eight steps. Simulated with made-up data; no live accounts.</desc>
+  <style>
+    .sans { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+    .mono { font-family: Consolas, Menlo, 'Courier New', monospace; }
+    .title { font-size: 30px; font-weight: 700; fill: #12263A; }
+    .sub { font-size: 16px; fill: #5A6B7B; }
+    .boxtitle { font-size: 21px; font-weight: 700; fill: #12263A; }
+    .boxsub { font-size: 13px; fill: #6B7B8B; }
+    .boxline { font-size: 15px; fill: #2E3F50; }
+    .rowtext { font-size: 15px; fill: #2E3F50; }
+    .edge { fill: none; stroke: #9AA9B8; stroke-width: 2.2; }
+    .lbl { font-size: 13px; fill: #34495E; }
+    .steph { font-size: 20px; font-weight: 700; fill: #12263A; }
+    .stept { font-size: 17px; fill: #2E3F50; }
+    .foot { font-size: 13px; fill: #7A8A99; }
+
+    /* Every animation runs on one 16-second loop; each of the 8 steps owns 2 seconds. */
+    .anim { animation-duration: 16s; animation-iteration-count: infinite; animation-timing-function: linear; }
+
+    /* Moving dots: visible only while they travel. */
+    @keyframes w0_2   { 0%, 12.2% { opacity: 1 } 12.5%, 100% { opacity: 0 } }
+    @keyframes w2_3   { 0%, 12.4% { opacity: 0 } 12.5%, 18.6% { opacity: 1 } 18.75%, 100% { opacity: 0 } }
+    @keyframes w3_4   { 0%, 18.7% { opacity: 0 } 18.75%, 24.9% { opacity: 1 } 25%, 100% { opacity: 0 } }
+    @keyframes w4_5   { 0%, 24.9% { opacity: 0 } 25%, 31.2% { opacity: 1 } 31.25%, 100% { opacity: 0 } }
+    @keyframes w5_6   { 0%, 31.2% { opacity: 0 } 31.25%, 37.4% { opacity: 1 } 37.5%, 100% { opacity: 0 } }
+    @keyframes w6_7   { 0%, 37.4% { opacity: 0 } 37.5%, 43.7% { opacity: 1 } 43.75%, 100% { opacity: 0 } }
+    @keyframes w7_8   { 0%, 43.7% { opacity: 0 } 43.75%, 49.9% { opacity: 1 } 50%, 100% { opacity: 0 } }
+    @keyframes w12_14 { 0%, 74.9% { opacity: 0 } 75%, 87.4% { opacity: 1 } 87.5%, 100% { opacity: 0 } }
+    @keyframes w14_16 { 0%, 87.4% { opacity: 0 } 87.5%, 99.7% { opacity: 1 } 100% { opacity: 0 } }
+
+    /* Edge labels and n8n rows: dim, then bright during their step. */
+    @keyframes h0_2   { 0%, 12.2% { opacity: 1 } 12.5%, 100% { opacity: .35 } }
+    @keyframes h2_4   { 0%, 12.4% { opacity: .35 } 12.5%, 24.9% { opacity: 1 } 25%, 100% { opacity: .35 } }
+    @keyframes h4_6   { 0%, 24.9% { opacity: .35 } 25%, 37.4% { opacity: 1 } 37.5%, 100% { opacity: .35 } }
+    @keyframes h6_8   { 0%, 37.4% { opacity: .35 } 37.5%, 49.9% { opacity: 1 } 50%, 100% { opacity: .35 } }
+    @keyframes h12_14 { 0%, 74.9% { opacity: .35 } 75%, 87.4% { opacity: 1 } 87.5%, 100% { opacity: .35 } }
+    @keyframes h14_16 { 0%, 87.4% { opacity: .35 } 87.5%, 99.7% { opacity: 1 } 100% { opacity: .35 } }
+    @keyframes r0_2   { 0%, 12.2% { opacity: 1 } 12.5%, 100% { opacity: 0 } }
+    @keyframes r2_4   { 0%, 12.4% { opacity: 0 } 12.5%, 24.9% { opacity: 1 } 25%, 100% { opacity: 0 } }
+    @keyframes r4_6   { 0%, 24.9% { opacity: 0 } 25%, 37.4% { opacity: 1 } 37.5%, 100% { opacity: 0 } }
+    @keyframes r6_8   { 0%, 37.4% { opacity: 0 } 37.5%, 49.9% { opacity: 1 } 50%, 100% { opacity: 0 } }
+    @keyframes r8_10  { 0%, 49.9% { opacity: 0 } 50%, 62.4% { opacity: 1 } 62.5%, 100% { opacity: 0 } }
+    @keyframes r10_12 { 0%, 62.4% { opacity: 0 } 62.5%, 74.9% { opacity: 1 } 75%, 100% { opacity: 0 } }
+    @keyframes r12_16 { 0%, 74.9% { opacity: 0 } 75%, 99.7% { opacity: 1 } 100% { opacity: 0 } }
+
+    /* Step captions share one keyframe; negative delays put each one in its own 2-second slot. */
+    @keyframes step { 0% { opacity: 0 } 1.5% { opacity: 1 } 11% { opacity: 1 } 12.5%, 100% { opacity: 0 } }
+    .s { opacity: 0; animation: step 16s linear infinite; }
+    .s1 { animation-delay: 0s; } .s2 { animation-delay: -14s; } .s3 { animation-delay: -12s; } .s4 { animation-delay: -10s; }
+    .s5 { animation-delay: -8s; } .s6 { animation-delay: -6s; } .s7 { animation-delay: -4s; } .s8 { animation-delay: -2s; }
+  </style>
+
+  <rect x="0" y="0" width="1280" height="720" fill="#F7F9FC"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#DCE3EA"/>
+
+  <text class="sans title" x="48" y="58">How a lead moves between the systems</text>
+  <text class="sans sub" x="48" y="88">Replay of made-up lead L07: Kari Heikkinen, CTO at Valoverkko Oy, Finland. Simulated with made-up data, no live accounts.</text>
+
+  <!-- Connections -->
+  <path id="p1"  class="edge" d="M298,228 L455,228"/>
+  <path id="p2"  class="edge" d="M455,298 L298,298"/>
+  <path id="p2b" class="edge" d="M298,322 L455,322"/>
+  <path id="p7"  class="edge" d="M455,418 L298,418"/>
+  <path id="p3"  class="edge" d="M825,190 C900,190 905,160 982,160"/>
+  <path id="p3b" class="edge" d="M982,192 C905,192 900,214 825,214"/>
+  <path id="p4"  class="edge" d="M825,300 L982,300"/>
+  <path id="p4b" class="edge" d="M982,326 L825,326"/>
+  <path id="p8"  class="edge" d="M825,446 C900,446 905,453 982,453"/>
+  <g fill="#9AA9B8">
+    <path d="M455,228 l-10,-5 v10 z"/>
+    <path d="M298,298 l10,-5 v10 z"/>
+    <path d="M455,322 l-10,-5 v10 z"/>
+    <path d="M298,418 l10,-5 v10 z"/>
+    <path d="M982,160 l-10,-5 v10 z"/>
+    <path d="M825,214 l10,-5 v10 z"/>
+    <path d="M982,300 l-10,-5 v10 z"/>
+    <path d="M825,326 l10,-5 v10 z"/>
+    <path d="M982,453 l-10,-5 v10 z"/>
+  </g>
+
+  <!-- Edge labels -->
+  <g class="sans lbl">
+    <text class="anim" style="animation-name:h0_2" x="376" y="218" text-anchor="middle">form lead</text>
+    <text class="anim" style="animation-name:h2_4" x="376" y="288" text-anchor="middle">4 searches</text>
+    <text class="anim" style="animation-name:h2_4" x="376" y="342" text-anchor="middle">results</text>
+    <text class="anim" style="animation-name:h12_14" x="376" y="408" text-anchor="middle">owner + reason</text>
+    <text class="anim" style="animation-name:h4_6" x="896" y="150" text-anchor="middle">form text only</text>
+    <text class="anim" style="animation-name:h4_6" x="903" y="232" text-anchor="middle">intent, 0.96</text>
+    <text class="anim" style="animation-name:h6_8" x="903" y="290" text-anchor="middle">fields needed</text>
+    <text class="anim" style="animation-name:h6_8" x="903" y="346" text-anchor="middle">industry, size</text>
+    <text class="anim" style="animation-name:h14_16" x="903" y="436" text-anchor="middle">message</text>
+  </g>
+
+  <!-- HubSpot -->
+  <g class="sans">
+    <rect x="48" y="168" width="250" height="300" rx="12" fill="#FFFFFF" stroke="#D5DEE7"/>
+    <path d="M48,180 a12,12 0 0 1 12,-12 h226 a12,12 0 0 1 12,12 v6 h-250 z" fill="#E9A46A"/>
+    <text class="boxtitle" x="68" y="220">HubSpot</text>
+    <text class="boxsub" x="68" y="240">CRM</text>
+    <text class="boxline" x="68" y="276">Form submission (lead)</text>
+    <text class="boxline" x="68" y="306">Contacts and companies</text>
+    <text class="boxline" x="68" y="336">Open deals, active owners</text>
+    <text class="boxline" x="68" y="366">Recent round-robin leads</text>
+    <text class="boxline" x="68" y="406">Owner, reason and scores</text>
+    <text class="boxline" x="68" y="430">written back</text>
+  </g>
+
+  <!-- n8n -->
+  <g class="sans">
+    <rect x="455" y="138" width="370" height="360" rx="12" fill="#FFFFFF" stroke="#D5DEE7"/>
+    <path d="M455,150 a12,12 0 0 1 12,-12 h346 a12,12 0 0 1 12,12 v6 h-370 z" fill="#8E7CC3"/>
+    <text class="boxtitle" x="475" y="190">n8n workflow</text>
+    <text class="boxsub" x="475" y="210">39 nodes, built from tested code</text>
+    <g>
+      <rect class="anim" style="animation-name:r0_2" x="468" y="222" width="344" height="28" rx="6" fill="#EEEAF8"/>
+      <rect class="anim" style="animation-name:r2_4" x="468" y="255" width="344" height="28" rx="6" fill="#EEEAF8"/>
+      <rect class="anim" style="animation-name:r4_6" x="468" y="288" width="344" height="28" rx="6" fill="#EEEAF8"/>
+      <rect class="anim" style="animation-name:r6_8" x="468" y="321" width="344" height="28" rx="6" fill="#EEEAF8"/>
+      <rect class="anim" style="animation-name:r8_10" x="468" y="354" width="344" height="28" rx="6" fill="#EEEAF8"/>
+      <rect class="anim" style="animation-name:r10_12" x="468" y="387" width="344" height="28" rx="6" fill="#EEEAF8"/>
+      <rect class="anim" style="animation-name:r12_16" x="468" y="420" width="344" height="28" rx="6" fill="#EEEAF8"/>
+    </g>
+    <text class="rowtext" x="482" y="241">1  Lead intake, prepare lead</text>
+    <text class="rowtext" x="482" y="274">2  Find duplicates, company, owners</text>
+    <text class="rowtext" x="482" y="307">3  Classify with Claude</text>
+    <text class="rowtext" x="482" y="340">4  Send to Clay, wait up to 2 min</text>
+    <text class="rowtext" x="482" y="373">5  Score lead</text>
+    <text class="rowtext" x="482" y="406">6  Route lead: nine rules</text>
+    <text class="rowtext" x="482" y="439">7  Update contact, notify</text>
+    <text class="boxsub" x="482" y="478">Watchdog every 5 minutes, numbers on Mondays</text>
+  </g>
+
+  <!-- Claude -->
+  <g class="sans">
+    <rect x="982" y="118" width="250" height="110" rx="12" fill="#FFFFFF" stroke="#D5DEE7"/>
+    <path d="M982,130 a12,12 0 0 1 12,-12 h226 a12,12 0 0 1 12,12 v6 h-250 z" fill="#C9A27E"/>
+    <text class="boxtitle" x="1002" y="166">Claude</text>
+    <text class="boxsub" x="1002" y="186">Anthropic Messages API</text>
+    <text class="boxline" x="1002" y="212">Labels intent, not the owner</text>
+  </g>
+
+  <!-- Clay -->
+  <g class="sans">
+    <rect x="982" y="258" width="250" height="110" rx="12" fill="#FFFFFF" stroke="#D5DEE7"/>
+    <path d="M982,270 a12,12 0 0 1 12,-12 h226 a12,12 0 0 1 12,12 v6 h-250 z" fill="#6AA36F"/>
+    <text class="boxtitle" x="1002" y="306">Clay</text>
+    <text class="boxsub" x="1002" y="326">Enrichment table, webhook</text>
+    <text class="boxline" x="1002" y="352">Missing fields only</text>
+  </g>
+
+  <!-- Slack -->
+  <g class="sans">
+    <rect x="982" y="398" width="250" height="110" rx="12" fill="#FFFFFF" stroke="#D5DEE7"/>
+    <path d="M982,410 a12,12 0 0 1 12,-12 h226 a12,12 0 0 1 12,12 v6 h-250 z" fill="#5B8DEF"/>
+    <text class="boxtitle" x="1002" y="446">Slack</text>
+    <text class="boxsub" x="1002" y="466">Bot, chat.postMessage</text>
+    <text class="boxline" x="1002" y="492">DM to the new owner</text>
+  </g>
+
+  <!-- Moving data -->
+  <g>
+    <circle r="8" fill="#E07B39" class="anim" style="animation-name:w0_2">
+      <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.125;1" keyPoints="0;1;1"><mpath xlink:href="#p1"/></animateMotion>
+    </circle>
+    <circle r="8" fill="#7A64B8" class="anim" style="animation-name:w2_3">
+      <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.125;0.1875;1" keyPoints="0;0;1;1"><mpath xlink:href="#p2"/></animateMotion>
+    </circle>
+    <circle r="8" fill="#E07B39" class="anim" style="animation-name:w3_4">
+      <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.1875;0.25;1" keyPoints="0;0;1;1"><mpath xlink:href="#p2b"/></animateMotion>
+    </circle>
+    <circle r="8" fill="#7A64B8" class="anim" style="animation-name:w4_5">
+      <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.25;0.3125;1" keyPoints="0;0;1;1"><mpath xlink:href="#p3"/></animateMotion>
+    </circle>
+    <circle r="8" fill="#B5895F" class="anim" style="animation-name:w5_6">
+      <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.3125;0.375;1" keyPoints="0;0;1;1"><mpath xlink:href="#p3b"/></animateMotion>
+    </circle>
+    <circle r="8" fill="#7A64B8" class="anim" style="animation-name:w6_7">
+      <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.375;0.4375;1" keyPoints="0;0;1;1"><mpath xlink:href="#p4"/></animateMotion>
+    </circle>
+    <circle r="8" fill="#4E8F53" class="anim" style="animation-name:w7_8">
+      <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.4375;0.5;1" keyPoints="0;0;1;1"><mpath xlink:href="#p4b"/></animateMotion>
+    </circle>
+    <circle r="8" fill="#7A64B8" class="anim" style="animation-name:w12_14">
+      <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.75;0.875;1" keyPoints="0;0;1;1"><mpath xlink:href="#p7"/></animateMotion>
+    </circle>
+    <circle r="8" fill="#7A64B8" class="anim" style="animation-name:w14_16">
+      <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.875;1" keyPoints="0;0;1"><mpath xlink:href="#p8"/></animateMotion>
+    </circle>
+  </g>
+
+  <!-- Step captions -->
+  <g class="sans">
+    <rect x="48" y="548" width="1184" height="140" rx="12" fill="#FFFFFF" stroke="#D5DEE7"/>
+    <g class="s s1"><text class="steph" x="72" y="590">1  Form lead: HubSpot sends it to n8n</text>
+      <text class="stept" x="72" y="626">contactId 8007, Kari Heikkinen, CTO at Valoverkko Oy, Finland, form "Book a demo", 2 pricing-page views</text></g>
+    <g class="s s2"><text class="steph" x="72" y="590">2  Lookups: four searches in HubSpot</text>
+      <text class="stept" x="72" y="626">No duplicate contact, no company for valoverkko.fi (a new company), 14 active owners, the latest round-robin leads</text></g>
+    <g class="s s3"><text class="steph" x="72" y="590">3  AI step: Claude labels the lead</text>
+      <text class="stept" x="72" y="626">Sent: form name, title, company and message only. Answer: demo_request, network_monitoring, confidence 0.96</text></g>
+    <g class="s s4"><text class="steph" x="72" y="590">4  Enrichment: Clay fills the gaps</text>
+      <text class="stept" x="72" y="626">Asked for industry and employees only. Clay posts back: Telecommunications, 800 employees</text></g>
+    <g class="s s5"><text class="steph" x="72" y="590">5  Score: fit 57 + engagement 24 = 81, tier A</text>
+      <text class="stept" x="72" y="626">Industry +20, size +12, region +10, CTO +15. Demo form +20, pricing views +4</text></g>
+    <g class="s s6"><text class="steph" x="72" y="590">6  Route: rule 8, NORDICS round robin</text>
+      <text class="stept" x="72" y="626">Not a customer, no open deal, no owner yet, so the region decides. Tier A goes to a senior rep: Aino Virta</text></g>
+    <g class="s s7"><text class="steph" x="72" y="590">7  Write-back: n8n updates the HubSpot contact</text>
+      <text class="stept" x="72" y="626">Owner Aino Virta, rule and reason, scores with reasons, AI label, key fields 100% filled, routed 1 minute after the form</text></g>
+    <g class="s s8"><text class="steph" x="72" y="590">8  Notify: Slack message to the new owner</text>
+      <text class="stept" x="72" y="626">"New tier A lead for you: Kari Heikkinen, CTO at Valoverkko Oy (FI). Why you: Next rep in the NORDICS round robin..."</text></g>
+    <rect x="72" y="660" width="1136" height="6" rx="3" fill="#E6ECF2"/>
+    <rect x="72" y="660" width="0" height="6" rx="3" fill="#1D5C7A">
+      <animate attributeName="width" from="0" to="1136" dur="16s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <text class="sans foot" x="1232" y="710" text-anchor="end">github.com/Maliha-Tasnim/lead-to-owner  |  simulated with made-up data</text>
+</svg>

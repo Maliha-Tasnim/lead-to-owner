@@ -1,0 +1,14 @@
+{
+  "name": "lead-to-owner",
+  "version": "1.0.0",
+  "description": "Inbound lead routing for HubSpot in n8n: dedupe, Clay enrichment, fit and engagement scoring, Claude classification, nine routing rules, Slack alerts and a 5-minute watchdog.",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test \"test/*.test.js\"",
+    "build": "node n8n/build-workflow.js",
+    "replay": "node scripts/replay.js",
+    "replay:shadow": "node scripts/replay.js --shadow"
+  },
+  "engines": { "node": ">=22" }
+}

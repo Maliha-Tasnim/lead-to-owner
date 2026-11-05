@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" role="img" aria-labelledby="t d">
+  <title id="t">All 22 made-up leads through the tested code (npm run replay)</title>
+  <desc id="d">Terminal output of npm run replay: one line per made-up lead with the rule, owner or queue, tier, score, Clay status, AI label and review flag, then the writes to HubSpot and Slack.</desc>
+  <style>
+    .sans { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+    .title { font-size: 30px; font-weight: 700; fill: #12263A; }
+    .sub { font-size: 16px; fill: #5A6B7B; }
+    .term { font-family: Consolas, Menlo, 'Courier New', monospace; font-size: 11.5px; fill: #D6E2EE; white-space: pre; }
+    .term text { white-space: pre; }
+    .hdr { fill: #FFFFFF; font-weight: 700; }
+    .dim { fill: #8597A8; }
+    .prompt { fill: #7FD1AE; }
+    .foot { font-size: 13px; fill: #7A8A99; }
+  </style>
+
+  <rect x="0" y="0" width="1280" height="720" fill="#F7F9FC"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#DCE3EA"/>
+  <text class="sans title" x="48" y="58">All 22 made-up leads through the tested code</text>
+  <text class="sans sub" x="48" y="88">Output of npm run replay. The same code runs inside the n8n workflow; 95 tests check it lead by lead.</text>
+
+  <rect x="48" y="112" width="1184" height="572" rx="10" fill="#0F1B2D"/>
+  <circle cx="72" cy="132" r="6" fill="#E26D5C"/><circle cx="92" cy="132" r="6" fill="#E9B44C"/><circle cx="112" cy="132" r="6" fill="#6AA36F"/>
+  <g class="term" xml:space="preserve">
+    <text x="68" y="166"><tspan class="prompt">$ npm run replay</tspan></text>
+    <text x="68" y="188">Mode: live</text>
+    <text x="68" y="214" class="hdr">Lead Rule               Owner or queue        Tier Score Clay       AI                      Review What happened</text>
+    <text x="68" y="233">L01  existing_customer  Elias Koivu           B    64    not_needed other                          Existing customer asks about more sites</text>
+    <text x="68" y="252">L02  open_deal          Lena Brandt           A    73    not_needed pricing_question               Pricing request from a company with an open deal</text>
+    <text x="68" y="271">L03  global_account     Pieter Dekker         A    78    not_needed demo_request            yes    Global account, Dutch domain missing from the CRM record</text>
+    <text x="68" y="290">L04  company_owner      Aino Virta            B    49    enriched   fallback:other                 Content download from a company with an owner, no message</text>
+    <text x="68" y="309">L05  departed_owner     Ville Ranta           A    73    not_needed demo_request                   Company owner has left the company</text>
+    <text x="68" y="328">L06  partner            Mira Lund             B    48    enriched   partnership                    Reseller enquiry</text>
+    <text x="68" y="347">L07  region_round_robin Aino Virta            A    81    enriched   demo_request                   New company, tier A, Nordics</text>
+    <text x="68" y="366" class="dim">L08  (skipped)                                                                                     repeat_event: The same webhook event again (HubSpot retry)</text>
+    <text x="68" y="385">L09  region_round_robin Elias Koivu           B    54    enriched   demo_request                   New company, tier B, Nordics</text>
+    <text x="68" y="404">L10  region_round_robin Hannah Croft          B    58    not_needed demo_request                   UK lead while one UK rep is on leave</text>
+    <text x="68" y="423">L11  fallback_queue     queue: routing        B    65    enriched   demo_request                   Country outside the four regions</text>
+    <text x="68" y="442">L12  non_sales_intent   queue: support        B    52    not_needed support_request                Support request from a customer's helpdesk</text>
+    <text x="68" y="461">L13  non_sales_intent   queue: hr             C    10    not_needed job_application                Job seeker</text>
+    <text x="68" y="480">L14  non_sales_intent   queue: discard        C    30    not_needed vendor_pitch                   Vendor pitch with a prompt injection</text>
+    <text x="68" y="499">L15  region_round_robin Sofia Ricci           A    75    enriched   fallback:demo_request   yes    AI answer is not JSON: keyword fallback</text>
+    <text x="68" y="518">L16  region_round_robin Lucas Moreau          B    53    enriched   fallback:other          yes    AI not confident enough: flagged for review</text>
+    <text x="68" y="537">L17  region_round_robin Lena Brandt           A    72    enriched   fallback:demo_request   yes    AI API down, country only from Clay</text>
+    <text x="68" y="556">L18  already_owned      Elias Koivu           B    47    enriched   fallback:other                 Known person with a +tag email: merged, keeps the contact's owner</text>
+    <text x="68" y="575">L19  non_sales_intent   queue: discard        C    20    not_needed spam                           Disposable email address</text>
+    <text x="68" y="594" class="dim">L20  (skipped)                                                                                     already_has_owner: Contact already has an owner</text>
+    <text x="68" y="613">L21  region_round_robin Aino Virta            C    31    no_answer  pricing_question               Clay did not answer within 2 minutes</text>
+    <text x="68" y="632">L22  company_owner      Aino Virta            B    61    enriched   demo_request            yes    Gmail address, company found by name only</text>
+    <text x="68" y="664">Writes: 20 contact updates, 17 Slack messages, 1 task, 1 merge, 6 company links.</text>
+  </g>
+
+  <text class="sans foot" x="1232" y="706" text-anchor="end">github.com/Maliha-Tasnim/lead-to-owner  |  made-up data</text>
+</svg>

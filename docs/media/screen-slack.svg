@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 820" width="1280" height="820" role="img" aria-labelledby="t d">
+  <title id="t">What people see in Slack (simulated view)</title>
+  <desc id="d">The messages the workflow posts for made-up leads in the replay of the tested code: direct messages to the new owner, routing alerts, the watchdog and the weekly numbers. Not a screenshot of a live Slack workspace.</desc>
+  <style>
+    .sans { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+    .title { font-size: 30px; font-weight: 700; fill: #12263A; }
+    .sub { font-size: 16px; fill: #5A6B7B; }
+    .col { font-size: 15px; font-weight: 700; fill: #4A5B6B; }
+    .card { fill: #FFFFFF; stroke: #D5DEE7; }
+    .bot { font-size: 15px; font-weight: 700; fill: #12263A; }
+    .time { font-size: 13px; fill: #7A8A99; }
+    .msg { font-size: 15px; fill: #1F2D3A; }
+    .link { font-size: 15px; fill: #1D5C7A; text-decoration: underline; }
+    .note { font-size: 13.5px; fill: #5A6B7B; }
+    .foot { font-size: 13px; fill: #7A8A99; }
+  </style>
+  <defs>
+    <g id="avatar"><rect width="36" height="36" rx="8" fill="#1D5C7A"/><text x="18" y="24" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">LR</text></g>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="820" fill="#F7F9FC"/>
+  <rect x="0.5" y="0.5" width="1279" height="819" fill="none" stroke="#DCE3EA"/>
+  <text class="sans title" x="48" y="58">What people see in Slack</text>
+  <text class="sans sub" x="48" y="88">Simulated view of the messages the workflow posts, from the same replay. Not a screenshot of a live Slack workspace.</text>
+
+  <text class="sans col" x="48" y="130">Direct messages to the new owner</text>
+  <text class="sans col" x="664" y="130">#sales-routing</text>
+
+  <!-- DM to Aino (L07) -->
+  <rect class="card" x="48" y="146" width="568" height="144" rx="10"/>
+  <use href="#avatar" x="64" y="160"/>
+  <text class="sans bot" x="112" y="176">Lead router</text><text class="sans time" x="210" y="176">08:19  to Aino Virta</text>
+  <g class="sans msg">
+    <text x="112" y="204">New tier A lead for you: Kari Heikkinen, CTO at Valoverkko Oy (FI).</text>
+    <text x="112" y="226">Why you: Next rep in the NORDICS round robin (tier A: senior</text>
+    <text x="112" y="248">reps first). Summary: Regional fiber operator wants a demo of</text>
+    <text x="112" y="270">multi-vendor monitoring. <tspan class="link">Open in HubSpot</tspan></text>
+  </g>
+
+  <!-- DM to Ville (L05) -->
+  <rect class="card" x="48" y="306" width="568" height="166" rx="10"/>
+  <use href="#avatar" x="64" y="320"/>
+  <text class="sans bot" x="112" y="336">Lead router</text><text class="sans time" x="210" y="336">08:13  to Ville Ranta</text>
+  <g class="sans msg">
+    <text x="112" y="364">New tier A lead for you: Erik Lund, CTO at Harbor Fiber (SE).</text>
+    <text x="112" y="386">Why you: The company's owner has left: routed to the regional</text>
+    <text x="112" y="408">team lead, with a task to reassign the company. Summary: Needs a</text>
+    <text x="112" y="430">demo of fiber network monitoring before a January tender.</text>
+    <text x="112" y="452"><tspan class="link">Open in HubSpot</tspan></text>
+  </g>
+  <text class="sans note" x="48" y="500">Also created in HubSpot for Ville: the task "Reassign Harbor Fiber AB: its owner has left",</text>
+  <text class="sans note" x="48" y="520">due the next day, high priority, linked to the company.</text>
+
+  <!-- Alert L05 -->
+  <rect class="card" x="664" y="146" width="568" height="144" rx="10"/>
+  <use href="#avatar" x="680" y="160"/>
+  <text class="sans bot" x="728" y="176">Lead router</text><text class="sans time" x="826" y="176">08:13</text>
+  <g class="sans msg">
+    <text x="728" y="204">Routing alert: The company's owner has left: routed to the</text>
+    <text x="728" y="226">regional team lead, with a task to reassign the company.</text>
+    <text x="728" y="248">Lead: Erik Lund, CTO at Harbor Fiber (SE).</text>
+    <text x="728" y="270"><tspan class="link">Open in HubSpot</tspan></text>
+  </g>
+
+  <!-- Alert L11 -->
+  <rect class="card" x="664" y="306" width="568" height="144" rx="10"/>
+  <use href="#avatar" x="680" y="320"/>
+  <text class="sans bot" x="728" y="336">Lead router</text><text class="sans time" x="826" y="336">08:28</text>
+  <g class="sans msg">
+    <text x="728" y="364">Routing alert: Country unknown or outside the four regions:</text>
+    <text x="728" y="386">sent to the routing queue. Lead: Dana Brooks, VP Network</text>
+    <text x="728" y="408">Engineering at Prairie Wireless (US).</text>
+    <text x="728" y="430"><tspan class="link">Open in HubSpot</tspan></text>
+  </g>
+
+  <!-- Watchdog -->
+  <rect class="card" x="664" y="466" width="568" height="100" rx="10"/>
+  <use href="#avatar" x="680" y="480"/>
+  <text class="sans bot" x="728" y="496">Lead router</text><text class="sans time" x="826" y="496">09:10  watchdog, test case: a run that failed half-way</text>
+  <g class="sans msg">
+    <text x="728" y="524">1 lead not routed and without an owner after 5 minutes:</text>
+    <text x="728" y="546">- Stuck Lead: waiting 11 min <tspan class="link">open</tspan></text>
+  </g>
+
+  <!-- Weekly numbers -->
+  <text class="sans col" x="48" y="580">#sales-routing, Mondays at 07:30</text>
+  <rect class="card" x="48" y="596" width="1184" height="166" rx="10"/>
+  <use href="#avatar" x="64" y="610"/>
+  <text class="sans bot" x="112" y="626">Lead router</text><text class="sans time" x="210" y="626">the week's numbers, from the replay of 22 made-up leads</text>
+  <g class="sans msg">
+    <text x="112" y="654">Lead routing, last 7 days: 21 leads.</text>
+    <text x="112" y="676">Time to owner or queue: median 1 min, p90 1 min, 100% within 5 minutes.</text>
+    <text x="112" y="698">Missed by the workflow: 0. Flagged for review: 5. Key fields filled: 93% on average.</text>
+    <text x="112" y="720">By rule: region_round_robin 7, non_sales_intent 4, company_owner 2, already_owned 1, departed_owner 1, existing_customer 1,</text>
+    <text x="112" y="742">fallback_queue 1, global_account 1, open_deal 1, owned_before_intake 1, partner 1.</text>
+  </g>
+
+  <text class="sans foot" x="1232" y="804" text-anchor="end">github.com/Maliha-Tasnim/lead-to-owner  |  simulated with made-up data</text>
+</svg>

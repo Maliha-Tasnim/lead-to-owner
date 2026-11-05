@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 780" width="1280" height="780" role="img" aria-labelledby="t d">
+  <title id="t">Where the systems connect</title>
+  <desc id="d">Every call the lead-to-owner workflow makes between HubSpot, n8n, Claude, Clay and Slack, with the endpoint and how each one is secured.</desc>
+  <style>
+    .sans { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+    .mono { font-family: Consolas, Menlo, 'Courier New', monospace; font-size: 12px; fill: #233545; white-space: pre; }
+    .mono text { white-space: pre; }
+    .title { font-size: 30px; font-weight: 700; fill: #12263A; }
+    .sub { font-size: 16px; fill: #5A6B7B; }
+    .card { fill: #FFFFFF; stroke: #D5DEE7; }
+    .bt { font-size: 20px; font-weight: 700; fill: #12263A; }
+    .bs { font-size: 13px; fill: #6B7B8B; }
+    .k { fill: #7A8A99; }
+    .edge { fill: none; stroke: #9AA9B8; stroke-width: 2; }
+    .el { font-size: 12.5px; fill: #34495E; }
+    .foot { font-size: 13px; fill: #7A8A99; }
+  </style>
+
+  <rect x="0" y="0" width="1280" height="780" fill="#F7F9FC"/>
+  <rect x="0.5" y="0.5" width="1279" height="779" fill="none" stroke="#DCE3EA"/>
+  <text class="sans title" x="48" y="58">Where the systems connect</text>
+  <text class="sans sub" x="48" y="88">Every call the workflow makes, with its endpoint and how it is secured. HubSpot API version 2026-09.</text>
+
+  <!-- HubSpot -->
+  <rect class="card" x="48" y="124" width="440" height="576" rx="12"/>
+  <path d="M48,136 a12,12 0 0 1 12,-12 h416 a12,12 0 0 1 12,12 v6 h-440 z" fill="#E9A46A"/>
+  <text class="sans bt" x="68" y="172">HubSpot</text><text class="sans bs" x="164" y="172">CRM, token with 6 scopes</text>
+  <g class="mono">
+    <text x="68" y="206"><tspan class="k">IN </tspan> workflow webhook action, sent to n8n</text>
+    <text x="68" y="226">    POST {n8n host}/webhook/lead-intake</text>
+    <text x="68" y="246">    header X-Lead-Router-Key (shared secret)</text>
+    <text x="68" y="280"><tspan class="k">OUT</tspan> calls from n8n, each retried up to 3 times</text>
+    <text x="68" y="304">POST  /crm/objects/2026-09/contacts/search</text>
+    <text x="68" y="324"><tspan class="k">      duplicates, recent round robin, watchdog, week</tspan></text>
+    <text x="68" y="348">POST  /crm/objects/2026-09/companies/search</text>
+    <text x="68" y="372">POST  /crm/objects/2026-09/deals/search</text>
+    <text x="68" y="396">GET   /crm/owners/2026-09?archived=false</text>
+    <text x="68" y="420">PATCH /crm/objects/2026-09/contacts/{id}</text>
+    <text x="68" y="444">PUT   /crm/objects/2026-09/contact/{id}/</text>
+    <text x="68" y="464">        associations/default/company/{id}</text>
+    <text x="68" y="488">POST  /crm/objects/2026-09/tasks</text>
+    <text x="68" y="512">POST  /crm/objects/2026-09/contacts/merge</text>
+    <text x="68" y="546"><tspan class="k">writes</tspan> owner + 23 lr_ properties: rule, reason,</text>
+    <text x="68" y="566">       scores, AI label, enrichment, completeness</text>
+    <text x="68" y="600"><tspan class="k">reads </tspan> contacts, companies, open deals, owners</text>
+    <text x="68" y="634"><tspan class="k">limits</tspan> search: 5 requests a second per account,</text>
+    <text x="68" y="654">       4 searches per lead</text>
+  </g>
+
+  <!-- n8n -->
+  <rect class="card" x="530" y="124" width="300" height="576" rx="12"/>
+  <path d="M530,136 a12,12 0 0 1 12,-12 h276 a12,12 0 0 1 12,12 v6 h-300 z" fill="#8E7CC3"/>
+  <text class="sans bt" x="550" y="172">n8n</text><text class="sans bs" x="596" y="172">39 nodes, 17 of them Code</text>
+  <g class="mono">
+    <text x="550" y="206"><tspan class="k">Webhook  </tspan> Lead intake</text>
+    <text x="550" y="230"><tspan class="k">Code     </tspan> Prepare lead</text>
+    <text x="550" y="254"><tspan class="k">HTTP x4  </tspan> HubSpot lookups</text>
+    <text x="550" y="278"><tspan class="k">Code     </tspan> Match records</text>
+    <text x="550" y="302"><tspan class="k">Code     </tspan> Build context</text>
+    <text x="550" y="326"><tspan class="k">HTTP     </tspan> Classify with Claude</text>
+    <text x="550" y="350"><tspan class="k">Code     </tspan> Check AI answer</text>
+    <text x="550" y="374"><tspan class="k">HTTP+Wait</tspan> Send to Clay, 2 min</text>
+    <text x="550" y="398"><tspan class="k">Code     </tspan> Score lead</text>
+    <text x="550" y="422"><tspan class="k">HTTP     </tspan> Recent round robin</text>
+    <text x="550" y="446"><tspan class="k">Code     </tspan> Route lead, 9 rules</text>
+    <text x="550" y="470"><tspan class="k">HTTP     </tspan> Update contact</text>
+    <text x="550" y="494"><tspan class="k">HTTP     </tspan> Slack, link, task,</text>
+    <text x="550" y="514">           merge (last)</text>
+    <text x="550" y="550"><tspan class="k">Schedule </tspan> every 5 minutes:</text>
+    <text x="550" y="570">           watchdog</text>
+    <text x="550" y="594"><tspan class="k">Schedule </tspan> Mondays 07:30:</text>
+    <text x="550" y="614">           weekly numbers</text>
+    <text x="550" y="650"><tspan class="k">state    </tspan> repeat-event keys,</text>
+    <text x="550" y="670">           alerted leads</text>
+  </g>
+
+  <!-- Claude -->
+  <rect class="card" x="872" y="124" width="360" height="168" rx="12"/>
+  <path d="M872,136 a12,12 0 0 1 12,-12 h336 a12,12 0 0 1 12,12 v6 h-360 z" fill="#C9A27E"/>
+  <text class="sans bt" x="892" y="172">Claude</text><text class="sans bs" x="966" y="172">Anthropic Messages API</text>
+  <g class="mono">
+    <text x="892" y="204">POST /v1/messages</text>
+    <text x="892" y="224">x-api-key, anthropic-version 2026-10-21</text>
+    <text x="892" y="244">claude-haiku-5-5, effort low, no thinking</text>
+    <text x="892" y="268"><tspan class="k">in </tspan> form text only  <tspan class="k">out</tspan> JSON label</text>
+  </g>
+
+  <!-- Clay -->
+  <rect class="card" x="872" y="316" width="360" height="168" rx="12"/>
+  <path d="M872,328 a12,12 0 0 1 12,-12 h336 a12,12 0 0 1 12,12 v6 h-360 z" fill="#6AA36F"/>
+  <text class="sans bt" x="892" y="364">Clay</text><text class="sans bs" x="944" y="364">enrichment table</text>
+  <g class="mono">
+    <text x="892" y="396"><tspan class="k">IN </tspan> POST the table's webhook</text>
+    <text x="892" y="416">    missing fields + callback_url</text>
+    <text x="892" y="444"><tspan class="k">OUT</tspan> POST the Wait node's resume URL</text>
+    <text x="892" y="464">    header X-Clay-Callback-Key</text>
+  </g>
+
+  <!-- Slack -->
+  <rect class="card" x="872" y="508" width="360" height="192" rx="12"/>
+  <path d="M872,520 a12,12 0 0 1 12,-12 h336 a12,12 0 0 1 12,12 v6 h-360 z" fill="#5B8DEF"/>
+  <text class="sans bt" x="892" y="556">Slack</text><text class="sans bs" x="952" y="556">bot with chat:write</text>
+  <g class="mono">
+    <text x="892" y="588">POST chat.postMessage</text>
+    <text x="892" y="608">Authorization: Bearer (bot token)</text>
+    <text x="892" y="636">DM to the new owner; alerts,</text>
+    <text x="892" y="656">watchdog and weekly numbers</text>
+    <text x="892" y="680">reply checked: ok must be true</text>
+  </g>
+
+  <!-- Connectors -->
+  <path class="edge" d="M488,226 L530,226"/><path d="M530,226 l-9,-5 v10 z" fill="#9AA9B8"/>
+  <path class="edge" d="M530,330 L488,330"/><path d="M488,330 l9,-5 v10 z" fill="#9AA9B8"/>
+  <path class="edge" d="M488,350 L530,350"/><path d="M530,350 l-9,-5 v10 z" fill="#9AA9B8"/>
+  <path class="edge" d="M830,212 L872,212"/><path d="M872,212 l-9,-5 v10 z" fill="#9AA9B8"/>
+  <path class="edge" d="M872,236 L830,236"/><path d="M830,236 l9,-5 v10 z" fill="#9AA9B8"/>
+  <path class="edge" d="M830,392 L872,392"/><path d="M872,392 l-9,-5 v10 z" fill="#9AA9B8"/>
+  <path class="edge" d="M872,440 L830,440"/><path d="M830,440 l9,-5 v10 z" fill="#9AA9B8"/>
+  <path class="edge" d="M830,604 L872,604"/><path d="M872,604 l-9,-5 v10 z" fill="#9AA9B8"/>
+
+  <text class="sans foot" x="48" y="736">Secrets stay in n8n credentials: the HubSpot token, the Anthropic key, the Slack bot token, and the intake and Clay callback secrets. None are in the repository.</text>
+  <text class="sans foot" x="1232" y="762" text-anchor="end">github.com/Maliha-Tasnim/lead-to-owner</text>
+</svg>

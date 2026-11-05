@@ -1,0 +1,53 @@
+digraph flow {
+  graph [rankdir=TB, fontname="Carlito", fontsize=14, nodesep=0.35, ranksep=0.45, pad=0.2, bgcolor="white", newrank=true];
+  node  [shape=box, style="rounded,filled", fontname="Carlito", fontsize=13, color="#9AA7B5", fillcolor="#F4F7FA", penwidth=1.1, margin="0.16,0.08", width=2.3];
+  edge  [fontname="Carlito", fontsize=11.5, color="#6B7785", arrowsize=0.7];
+
+  subgraph cluster_intake {
+    label="1  Intake and duplicates"; labeljust=r; fontcolor="#33475B"; color="#D5DEE7"; style="rounded";
+    form [label="HubSpot form lead\n(workflow webhook)", fillcolor="#E8F1FB", color="#4A7BB7"];
+    prep [label="Skip repeats and\ncontacts with an owner"];
+    find [label="Find duplicates, company,\nopen deals, active owners"];
+    { rank=same; form; prep; find; }
+  }
+  subgraph cluster_ai {
+    label="2  AI before Clay"; labeljust=r; fontcolor="#33475B"; color="#D5DEE7"; style="rounded";
+    ai   [label="Claude labels intent\n(form text only)"];
+    clay [label="Clay fills missing fields\n(waits up to 2 minutes)"];
+    { rank=same; ai; clay; }
+  }
+  subgraph cluster_route {
+    label="3  Score and route"; labeljust=r; fontcolor="#33475B"; color="#D5DEE7"; style="rounded";
+    score [label="Fit + engagement score,\ntier A, B or C"];
+    rules [label="Nine rules,\nfirst match wins", fillcolor="#FFF4E0", color="#D9A441"];
+    { rank=same; score; rules; }
+  }
+  subgraph cluster_write {
+    label="4  Write back and tell people"; labeljust=r; fontcolor="#33475B"; color="#D5DEE7"; style="rounded";
+    crm   [label="Owner or queue, with the\nreason, written to HubSpot"];
+    slack [label="Slack message to the\nnew owner, or an alert"];
+    extra [label="Task, company link,\nthen the merge"];
+    { rank=same; crm; slack; extra; }
+  }
+  subgraph cluster_watch {
+    label="Always on"; labeljust=r; fontcolor="#33475B"; color="#D5DEE7"; style="rounded";
+    watch  [label="Every 5 minutes: leads not routed\nand unowned after 5 minutes", fillcolor="#EEF6EE", color="#6AA36F"];
+    monday [label="Mondays: time to owner,\nmisses, key-field fill rate", fillcolor="#EEF6EE", color="#6AA36F"];
+    chan   [label="Slack #sales-routing", fillcolor="white", color="#6AA36F"];
+    { rank=same; watch; chan; monday; }
+  }
+
+  form -> prep -> find;
+  find:s -> ai:n [constraint=false];
+  ai -> clay [label=" sales lead, field missing "];
+  ai:s -> score:n [xlabel="otherwise  "];
+  clay:s -> score:n [constraint=false];
+  score -> rules;
+  rules:s -> crm:n [constraint=false];
+  crm -> slack -> extra;
+  watch -> chan [style=dashed];
+  chan -> monday [style=dashed, dir=back];
+
+  // invisible spine that stacks the four stages on the left edge
+  form -> ai -> score -> crm -> watch [style=invis, weight=20];
+}

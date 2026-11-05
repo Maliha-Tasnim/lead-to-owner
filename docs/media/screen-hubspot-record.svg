@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 860" width="1280" height="860" role="img" aria-labelledby="t d">
+  <title id="t">The HubSpot contact after routing (simulated view)</title>
+  <desc id="d">The properties the workflow writes to the contact for made-up lead L07, from the replay of the tested code. Made-up data; not a screenshot of a live HubSpot account.</desc>
+  <style>
+    .sans { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+    .mono { font-family: Consolas, Menlo, 'Courier New', monospace; }
+    .title { font-size: 30px; font-weight: 700; fill: #12263A; }
+    .sub { font-size: 16px; fill: #5A6B7B; }
+    .card { fill: #FFFFFF; stroke: #D5DEE7; }
+    .name { font-size: 24px; font-weight: 700; fill: #12263A; }
+    .meta { font-size: 15px; fill: #4A5B6B; }
+    .lab { font-size: 13px; fill: #7A8A99; }
+    .val { font-size: 15px; fill: #12263A; }
+    .sec { font-size: 15px; font-weight: 700; fill: #12263A; }
+    .prop { font-size: 13.5px; fill: #4A5B6B; }
+    .pv { font-size: 15px; fill: #12263A; }
+    .tl { font-size: 14px; fill: #2E3F50; }
+    .tlt { font-size: 13px; fill: #7A8A99; }
+    .foot { font-size: 13px; fill: #7A8A99; }
+  </style>
+
+  <rect x="0" y="0" width="1280" height="860" fill="#F7F9FC"/>
+  <rect x="0.5" y="0.5" width="1279" height="859" fill="none" stroke="#DCE3EA"/>
+  <text class="sans title" x="48" y="58">The HubSpot contact after routing</text>
+  <text class="sans sub" x="48" y="88">Simulated view of what the workflow writes for made-up lead L07. Not a screenshot of a live HubSpot account.</text>
+
+  <!-- Left: the person and the timeline -->
+  <rect class="card" x="48" y="118" width="380" height="700" rx="12"/>
+  <circle cx="110" cy="182" r="34" fill="#E9A46A"/>
+  <text class="sans" x="110" y="191" text-anchor="middle" font-size="24" font-weight="700" fill="#FFFFFF">KH</text>
+  <text class="sans name" x="160" y="176">Kari Heikkinen</text>
+  <text class="sans meta" x="160" y="200">CTO at Valoverkko Oy</text>
+  <line x1="72" y1="238" x2="404" y2="238" stroke="#E6ECF2"/>
+  <text class="sans lab" x="72" y="266">Email</text><text class="sans val" x="72" y="288">kari.heikkinen@valoverkko.fi</text>
+  <text class="sans lab" x="72" y="320">Country</text><text class="sans val" x="72" y="342">Finland</text>
+  <text class="sans lab" x="72" y="374">Contact owner</text><text class="sans val" x="72" y="396" font-weight="700">Aino Virta</text>
+  <text class="sans lab" x="72" y="428">Form</text><text class="sans val" x="72" y="450">Book a demo</text>
+  <text class="sans lab" x="72" y="482">Company record</text><text class="sans val" x="72" y="504">None yet: valoverkko.fi is new</text>
+  <line x1="72" y1="534" x2="404" y2="534" stroke="#E6ECF2"/>
+  <text class="sans sec" x="72" y="566">Timeline, 5 November 2026</text>
+  <g class="sans">
+    <circle cx="80" cy="598" r="5" fill="#1D5C7A"/><text class="tlt" x="96" y="602">08:18</text><text class="tl" x="146" y="602">Form submitted</text>
+    <circle cx="80" cy="634" r="5" fill="#1D5C7A"/><text class="tlt" x="96" y="638">08:18</text><text class="tl" x="146" y="638">Webhook sent to n8n</text>
+    <circle cx="80" cy="670" r="5" fill="#1D5C7A"/><text class="tlt" x="96" y="674">08:19</text><text class="tl" x="146" y="674">Owner set: Aino Virta (rule 8)</text>
+    <circle cx="80" cy="706" r="5" fill="#1D5C7A"/><text class="tlt" x="96" y="710">08:19</text><text class="tl" x="146" y="710">Slack message sent to Aino</text>
+    <line x1="80" y1="603" x2="80" y2="701" stroke="#C7D3DE" stroke-width="2"/>
+  </g>
+  <text class="sans lab" x="72" y="760">Time to owner: 1 minute (target: under 5)</text>
+
+  <!-- Right: the properties -->
+  <rect class="card" x="452" y="118" width="780" height="700" rx="12"/>
+  <text class="sans sec" x="476" y="152">Lead routing properties</text>
+  <text class="sans lab" x="1208" y="152" text-anchor="end">written by the workflow at 08:19</text>
+  <line x1="476" y1="168" x2="1208" y2="168" stroke="#E6ECF2"/>
+  <g class="mono prop">
+    <text x="476" y="198">hubspot_owner_id</text>
+    <text x="476" y="228">lr_routing_rule</text>
+    <text x="476" y="258">lr_routing_reason</text>
+    <text x="476" y="288">lr_routing_queue</text>
+    <text x="476" y="318">lr_region</text>
+    <text x="476" y="348">lr_intake_at</text>
+    <text x="476" y="378">lr_routed_at</text>
+    <text x="476" y="408">lr_lead_tier</text>
+    <text x="476" y="438">lr_lead_score, fit, engagement</text>
+    <text x="476" y="468">lr_score_reasons</text>
+    <text x="476" y="522">lr_ai_intent</text>
+    <text x="476" y="552">lr_ai_product_interest</text>
+    <text x="476" y="582">lr_ai_urgency, lr_ai_source</text>
+    <text x="476" y="612">lr_ai_summary</text>
+    <text x="476" y="642">lr_needs_review</text>
+    <text x="476" y="672">lr_enrichment_status</text>
+    <text x="476" y="702">lr_completeness_pct</text>
+    <text x="476" y="732">lr_country_code, industry, employees</text>
+    <text x="476" y="762">lr_email_key</text>
+  </g>
+  <g class="sans pv">
+    <text x="780" y="198">31001 (Aino Virta)</text>
+    <text x="780" y="228">region_round_robin</text>
+    <text x="780" y="258">Next rep in the NORDICS round robin (tier A: senior reps first)</text>
+    <text x="780" y="288" fill="#7A8A99">empty: a rep has the lead</text>
+    <text x="780" y="318">NORDICS</text>
+    <text x="780" y="348">2026-11-05 08:18 UTC</text>
+    <text x="780" y="378">2026-11-05 08:19 UTC</text>
+    <text x="780" y="408" font-weight="700">A</text>
+    <text x="780" y="438">81, 57, 24</text>
+    <text x="780" y="468">industry_icp +20, employees_200_999 +12, region_served +10,</text>
+    <text x="780" y="492">title_seniority +15, form_demo_request +20, pricing_page_views +4</text>
+    <text x="780" y="522">demo_request</text>
+    <text x="780" y="552">network_monitoring</text>
+    <text x="780" y="582">normal, ai</text>
+    <text x="780" y="612">Regional fiber operator wants a demo of multi-vendor monitoring.</text>
+    <text x="780" y="642">false</text>
+    <text x="780" y="672">enriched</text>
+    <text x="780" y="702">100</text>
+    <text x="780" y="732">FI, telecommunications, 800</text>
+    <text x="780" y="762">kari.heikkinen@valoverkko.fi</text>
+  </g>
+  <g stroke="#F0F3F6">
+    <line x1="476" y1="208" x2="1208" y2="208"/><line x1="476" y1="238" x2="1208" y2="238"/><line x1="476" y1="268" x2="1208" y2="268"/>
+    <line x1="476" y1="298" x2="1208" y2="298"/><line x1="476" y1="328" x2="1208" y2="328"/><line x1="476" y1="358" x2="1208" y2="358"/>
+    <line x1="476" y1="388" x2="1208" y2="388"/><line x1="476" y1="418" x2="1208" y2="418"/><line x1="476" y1="448" x2="1208" y2="448"/>
+    <line x1="476" y1="502" x2="1208" y2="502"/><line x1="476" y1="532" x2="1208" y2="532"/><line x1="476" y1="562" x2="1208" y2="562"/>
+    <line x1="476" y1="592" x2="1208" y2="592"/><line x1="476" y1="622" x2="1208" y2="622"/><line x1="476" y1="652" x2="1208" y2="652"/>
+    <line x1="476" y1="682" x2="1208" y2="682"/><line x1="476" y1="712" x2="1208" y2="712"/><line x1="476" y1="742" x2="1208" y2="742"/>
+  </g>
+  <text class="sans lab" x="476" y="798">Every value comes from the replay of the tested code (npm run replay). The workflow only sets an owner when a rule picks one.</text>
+
+  <text class="sans foot" x="1232" y="845" text-anchor="end">github.com/Maliha-Tasnim/lead-to-owner  |  simulated with made-up data</text>
+</svg>

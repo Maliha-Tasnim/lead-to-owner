@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1080" width="1280" height="1080" role="img" aria-labelledby="t d">
+  <title id="t">One lead, step by step: the data at each hop</title>
+  <desc id="d">The data that moves between HubSpot, n8n, Claude, Clay and Slack for made-up lead L07, taken from the replay of the tested code. Simulated with made-up data; no live accounts.</desc>
+  <style>
+    .sans { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+    .mono { font-family: Consolas, Menlo, 'Courier New', monospace; font-size: 14px; fill: #233545; white-space: pre; }
+    .mono text { white-space: pre; }
+    .title { font-size: 30px; font-weight: 700; fill: #12263A; }
+    .sub { font-size: 16px; fill: #5A6B7B; }
+    .card { fill: #FFFFFF; stroke: #D5DEE7; }
+    .num { font-size: 16px; font-weight: 700; fill: #FFFFFF; }
+    .h { font-size: 17px; font-weight: 700; fill: #12263A; }
+    .pill { font-size: 12px; font-weight: 600; fill: #FFFFFF; }
+    .key { fill: #7A8A99; }
+    .foot { font-size: 13px; fill: #7A8A99; }
+    /* A soft marker walks down the eight steps, two seconds each. */
+    @keyframes walk { 0% { transform: translateY(0) } 12.4% { transform: translateY(0) } 12.5% { transform: translateY(124px) } 24.9% { transform: translateY(124px) }
+      25% { transform: translateY(248px) } 37.4% { transform: translateY(248px) } 37.5% { transform: translateY(372px) } 49.9% { transform: translateY(372px) }
+      50% { transform: translateY(472px) } 62.4% { transform: translateY(472px) } 62.5% { transform: translateY(572px) } 74.9% { transform: translateY(572px) }
+      75% { transform: translateY(672px) } 87.4% { transform: translateY(672px) } 87.5% { transform: translateY(796px) } 100% { transform: translateY(796px) } }
+    .marker { animation: walk 16s linear infinite; }
+  </style>
+
+  <rect x="0" y="0" width="1280" height="1080" fill="#F7F9FC"/>
+  <rect x="0.5" y="0.5" width="1279" height="1079" fill="none" stroke="#DCE3EA"/>
+  <text class="sans title" x="48" y="58">One lead, step by step: the data at each hop</text>
+  <text class="sans sub" x="48" y="88">Made-up lead L07 from the replay of the tested code. Simulated views, not screenshots of live accounts.</text>
+
+  <!-- marker that walks down the steps -->
+  <rect class="marker" x="40" y="120" width="6" height="88" rx="3" fill="#1D5C7A"/>
+
+  <!-- 1 webhook -->
+  <rect class="card" x="48" y="120" width="1184" height="112" rx="10"/>
+  <circle cx="80" cy="152" r="16" fill="#1D5C7A"/><text class="sans num" x="80" y="158" text-anchor="middle">1</text>
+  <text class="sans h" x="106" y="158">Webhook payload</text>
+  <rect x="106" y="172" width="128" height="22" rx="11" fill="#E9A46A"/><text class="sans pill" x="170" y="187" text-anchor="middle">HubSpot to n8n</text>
+  <g class="mono" xml:space="preserve">
+    <text x="330" y="152">{ "contactId": "8007", "email": "kari.heikkinen@valoverkko.fi", "firstname": "Kari",</text>
+    <text x="330" y="176">  "lastname": "Heikkinen", "jobtitle": "CTO", "company": "Valoverkko Oy", "country": "Finland",</text>
+    <text x="330" y="200">  "form_name": "Book a demo", "pricing_page_views": 2, "submitted_at": "2026-11-05T08:18:00Z" }</text>
+  </g>
+
+  <!-- 2 searches -->
+  <rect class="card" x="48" y="244" width="1184" height="112" rx="10"/>
+  <circle cx="80" cy="276" r="16" fill="#1D5C7A"/><text class="sans num" x="80" y="282" text-anchor="middle">2</text>
+  <text class="sans h" x="106" y="282">Four searches</text>
+  <rect x="106" y="296" width="128" height="22" rx="11" fill="#E9A46A"/><text class="sans pill" x="170" y="311" text-anchor="middle">n8n and HubSpot</text>
+  <g class="mono" xml:space="preserve">
+    <text x="330" y="276"><tspan class="key">contacts </tspan> 1 result, the lead itself: no duplicate, no owner yet</text>
+    <text x="330" y="300"><tspan class="key">companies</tspan> 0 results for valoverkko.fi or "valoverkko": a new company, nothing to link</text>
+    <text x="330" y="324"><tspan class="key">owners   </tspan> 14 active, one has left   <tspan class="key">last round robin</tspan> Aino 4 Nov 09:30, Elias 4 Nov 08:00</text>
+  </g>
+
+  <!-- 3 Claude -->
+  <rect class="card" x="48" y="368" width="1184" height="112" rx="10"/>
+  <circle cx="80" cy="400" r="16" fill="#1D5C7A"/><text class="sans num" x="80" y="406" text-anchor="middle">3</text>
+  <text class="sans h" x="106" y="406">Claude: the label</text>
+  <rect x="106" y="420" width="128" height="22" rx="11" fill="#C9A27E"/><text class="sans pill" x="170" y="435" text-anchor="middle">n8n and Claude</text>
+  <g class="mono" xml:space="preserve">
+    <text x="330" y="400"><tspan class="key">sent  </tspan> form: Book a demo | job_title: CTO | company: Valoverkko Oy | message: We run a regional</text>
+    <text x="330" y="424">       fiber network and want a demo of multi-vendor monitoring.   <tspan class="key">(no name, email or phone)</tspan></text>
+    <text x="330" y="448"><tspan class="key">answer</tspan> {"intent": "demo_request", "product_interest": "network_monitoring", "confidence": 0.96}</text>
+  </g>
+
+  <!-- 4 Clay -->
+  <rect class="card" x="48" y="492" width="1184" height="88" rx="10"/>
+  <circle cx="80" cy="524" r="16" fill="#1D5C7A"/><text class="sans num" x="80" y="530" text-anchor="middle">4</text>
+  <text class="sans h" x="106" y="530">Clay: missing fields</text>
+  <rect x="106" y="544" width="128" height="22" rx="11" fill="#6AA36F"/><text class="sans pill" x="170" y="559" text-anchor="middle">n8n and Clay</text>
+  <g class="mono" xml:space="preserve">
+    <text x="330" y="524"><tspan class="key">sent  </tspan> {"lead_key": "8007", "domain": "valoverkko.fi", "fields_needed": ["industry", "employees"]}</text>
+    <text x="330" y="548"><tspan class="key">back  </tspan> {"enrichment": {"industry": "Telecommunications", "employees": 800}}  <tspan class="key">within 2 minutes</tspan></text>
+  </g>
+
+  <!-- 5 score -->
+  <rect class="card" x="48" y="592" width="1184" height="88" rx="10"/>
+  <circle cx="80" cy="624" r="16" fill="#1D5C7A"/><text class="sans num" x="80" y="630" text-anchor="middle">5</text>
+  <text class="sans h" x="106" y="630">Score: 81, tier A</text>
+  <rect x="106" y="644" width="128" height="22" rx="11" fill="#8E7CC3"/><text class="sans pill" x="170" y="659" text-anchor="middle">n8n</text>
+  <g class="mono" xml:space="preserve">
+    <text x="330" y="624"><tspan class="key">fit 57       </tspan> industry_icp +20, employees_200_999 +12, region_served +10, title_seniority +15</text>
+    <text x="330" y="648"><tspan class="key">engagement 24</tspan> form_demo_request +20, pricing_page_views +4</text>
+  </g>
+
+  <!-- 6 route -->
+  <rect class="card" x="48" y="692" width="1184" height="88" rx="10"/>
+  <circle cx="80" cy="724" r="16" fill="#1D5C7A"/><text class="sans num" x="80" y="730" text-anchor="middle">6</text>
+  <text class="sans h" x="106" y="730">Route: rule 8</text>
+  <rect x="106" y="744" width="128" height="22" rx="11" fill="#8E7CC3"/><text class="sans pill" x="170" y="759" text-anchor="middle">n8n</text>
+  <g class="mono" xml:space="preserve">
+    <text x="330" y="724"><tspan class="key">rules 1 to 7</tspan> no match: a sales lead with no customer, deal, global account, owner or partner</text>
+    <text x="330" y="748"><tspan class="key">rule 8      </tspan> NORDICS round robin, tier A goes to senior reps first: Aino Virta (31001)</text>
+  </g>
+
+  <!-- 7 write-back -->
+  <rect class="card" x="48" y="792" width="1184" height="112" rx="10"/>
+  <circle cx="80" cy="824" r="16" fill="#1D5C7A"/><text class="sans num" x="80" y="830" text-anchor="middle">7</text>
+  <text class="sans h" x="106" y="830">Write-back</text>
+  <rect x="106" y="844" width="128" height="22" rx="11" fill="#E9A46A"/><text class="sans pill" x="170" y="859" text-anchor="middle">n8n to HubSpot</text>
+  <g class="mono" xml:space="preserve">
+    <text x="330" y="824">hubspot_owner_id 31001   lr_routing_rule region_round_robin   lr_lead_tier A   lr_lead_score 81</text>
+    <text x="330" y="848">lr_ai_intent demo_request   lr_enrichment_status enriched   lr_completeness_pct 100</text>
+    <text x="330" y="872">lr_routing_reason "Next rep in the NORDICS round robin (tier A: senior reps first)"</text>
+  </g>
+
+  <!-- 8 Slack -->
+  <rect class="card" x="48" y="916" width="1184" height="112" rx="10"/>
+  <circle cx="80" cy="948" r="16" fill="#1D5C7A"/><text class="sans num" x="80" y="954" text-anchor="middle">8</text>
+  <text class="sans h" x="106" y="954">Slack message</text>
+  <rect x="106" y="968" width="128" height="22" rx="11" fill="#5B8DEF"/><text class="sans pill" x="170" y="983" text-anchor="middle">n8n to Slack</text>
+  <g class="mono" xml:space="preserve">
+    <text x="330" y="948">New tier A lead for you: Kari Heikkinen, CTO at Valoverkko Oy (FI). Why you: Next rep in the</text>
+    <text x="330" y="972">NORDICS round robin (tier A: senior reps first). Summary: Regional fiber operator wants a demo</text>
+    <text x="330" y="996">of multi-vendor monitoring. <tspan fill="#1D5C7A" text-decoration="underline">Open in HubSpot</tspan>   <tspan class="key">routed 08:19, 1 minute after the form</tspan></text>
+  </g>
+
+  <text class="sans foot" x="1232" y="1062" text-anchor="end">github.com/Maliha-Tasnim/lead-to-owner  |  simulated with made-up data</text>
+</svg>
